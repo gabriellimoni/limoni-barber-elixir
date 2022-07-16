@@ -2,6 +2,15 @@ defmodule LimoniBarberWeb.BarberLive.FormComponent do
   use LimoniBarberWeb, :live_component
 
   alias LimoniBarber.Barbers
+  alias LimoniBarber.BarberShops
+
+  @impl true
+  def mount(socket) do
+    barber_shops = BarberShops.list_barber_shops()
+    barber_shops_keyword_list = Enum.map(barber_shops, fn shop -> {shop.name, shop.id} end)
+    barber_options_with_null = Keyword.put(barber_shops_keyword_list, :-, nil)
+    {:ok, assign(socket, :barber_shops_keyword_list, barber_options_with_null)}
+  end
 
   @impl true
   def update(%{barber: barber} = assigns, socket) do

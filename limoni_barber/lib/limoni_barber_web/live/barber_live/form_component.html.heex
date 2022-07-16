@@ -24,6 +24,10 @@
     <%= label f, :phone %>
     <%= text_input f, :phone %>
     <%= error_tag f, :phone %>
+
+    <%= label f, :barber_shop_id %>
+    <%= select f, :barber_shop_id, @barber_shops_keyword_list %>
+    <%= error_tag f, :barber_shop_id %>
   
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>
