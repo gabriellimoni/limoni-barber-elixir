@@ -1,0 +1,45 @@
+<h1>Listing Barber jobs</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.barber_job_index_path(@socket, :index)}>
+    <.live_component
+      module={LimoniBarberWeb.BarberJobLive.FormComponent}
+      id={@barber_job.id || :new}
+      title={@page_title}
+      action={@live_action}
+      barber_job={@barber_job}
+      return_to={Routes.barber_job_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Barber</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price in cents</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="barber_jobs">
+    <%= for barber_job <- @barber_jobs do %>
+      <tr id={"barber_job-#{barber_job.id}"}>
+        <td><%= barber_job.barber.name %></td>
+        <td><%= barber_job.name %></td>
+        <td><%= barber_job.description %></td>
+        <td><%= barber_job.price_in_cents %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.barber_job_show_path(@socket, :show, barber_job) %></span>
+          <span><%= live_patch "Edit", to: Routes.barber_job_index_path(@socket, :edit, barber_job) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: barber_job.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Barber job", to: Routes.barber_job_index_path(@socket, :new) %></span>

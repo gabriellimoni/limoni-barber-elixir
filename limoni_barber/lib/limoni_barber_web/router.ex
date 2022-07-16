@@ -19,31 +19,38 @@ defmodule LimoniBarberWeb.Router do
 
     get "/", PageController, :index
 
+    # BarberShopGroups
     live "/barber_shop_groups", BarberShopGroupLive.Index, :index
     live "/barber_shop_groups/new", BarberShopGroupLive.Index, :new
     live "/barber_shop_groups/:id/edit", BarberShopGroupLive.Index, :edit
-
     live "/barber_shop_groups/:id", BarberShopGroupLive.Show, :show
     live "/barber_shop_groups/:id/show/edit", BarberShopGroupLive.Show, :edit
 
+    # BarberShops
     live "/barber_shops", BarberShopLive.Index, :index
     live "/barber_shops/new", BarberShopLive.Index, :new
     live "/barber_shops/:id/edit", BarberShopLive.Index, :edit
-
     live "/barber_shops/:id", BarberShopLive.Show, :show
     live "/barber_shops/:id/show/edit", BarberShopLive.Show, :edit
 
+    # Barbers
     live "/barbers", BarberLive.Index, :index
     live "/barbers/new", BarberLive.Index, :new
     live "/barbers/:id/edit", BarberLive.Index, :edit
-
     live "/barbers/:id", BarberLive.Show, :show
     live "/barbers/:id/show/edit", BarberLive.Show, :edit
 
+    # BarberJobs
+    live "/barber_jobs", BarberJobLive.Index, :index
+    live "/barber_jobs/new", BarberJobLive.Index, :new
+    live "/barber_jobs/:id/edit", BarberJobLive.Index, :edit
+    live "/barber_jobs/:id", BarberJobLive.Show, :show
+    live "/barber_jobs/:id/show/edit", BarberJobLive.Show, :edit
+
+    #Patients
     live "/patients", PatientLive.Index, :index
     live "/patients/new", PatientLive.Index, :new
     live "/patients/:id/edit", PatientLive.Index, :edit
-
     live "/patients/:id", PatientLive.Show, :show
     live "/patients/:id/show/edit", PatientLive.Show, :edit
   end

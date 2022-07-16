@@ -101,4 +101,100 @@ defmodule LimoniBarber.Barbers do
   def change_barber(%Barber{} = barber, attrs \\ %{}) do
     Barber.changeset(barber, attrs)
   end
+
+  alias LimoniBarber.Barbers.BarberJob
+
+  @doc """
+  Returns the list of barber_jobs.
+
+  ## Examples
+
+      iex> list_barber_jobs()
+      [%BarberJob{}, ...]
+
+  """
+  def list_barber_jobs do
+    Repo.all(BarberJob) |> Repo.preload(:barber)
+  end
+
+  @doc """
+  Gets a single barber_job.
+
+  Raises `Ecto.NoResultsError` if the Barber job does not exist.
+
+  ## Examples
+
+      iex> get_barber_job!(123)
+      %BarberJob{}
+
+      iex> get_barber_job!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_barber_job!(id), do: Repo.get!(BarberJob, id) |> Repo.preload(:barber)
+
+  @doc """
+  Creates a barber_job.
+
+  ## Examples
+
+      iex> create_barber_job(%{field: value})
+      {:ok, %BarberJob{}}
+
+      iex> create_barber_job(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_barber_job(attrs \\ %{}) do
+    %BarberJob{}
+    |> BarberJob.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a barber_job.
+
+  ## Examples
+
+      iex> update_barber_job(barber_job, %{field: new_value})
+      {:ok, %BarberJob{}}
+
+      iex> update_barber_job(barber_job, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_barber_job(%BarberJob{} = barber_job, attrs) do
+    barber_job
+    |> BarberJob.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a barber_job.
+
+  ## Examples
+
+      iex> delete_barber_job(barber_job)
+      {:ok, %BarberJob{}}
+
+      iex> delete_barber_job(barber_job)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_barber_job(%BarberJob{} = barber_job) do
+    Repo.delete(barber_job)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking barber_job changes.
+
+  ## Examples
+
+      iex> change_barber_job(barber_job)
+      %Ecto.Changeset{data: %BarberJob{}}
+
+  """
+  def change_barber_job(%BarberJob{} = barber_job, attrs \\ %{}) do
+    BarberJob.changeset(barber_job, attrs)
+  end
 end

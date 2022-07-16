@@ -62,4 +62,62 @@ defmodule LimoniBarber.BarbersTest do
       assert %Ecto.Changeset{} = Barbers.change_barber(barber)
     end
   end
+
+  describe "barber_jobs" do
+    alias LimoniBarber.Barbers.BarberJob
+
+    import LimoniBarber.BarbersFixtures
+
+    @invalid_attrs %{description: nil, name: nil, price_in_cents: nil}
+
+    test "list_barber_jobs/0 returns all barber_jobs" do
+      barber_job = barber_job_fixture()
+      assert Barbers.list_barber_jobs() == [barber_job]
+    end
+
+    test "get_barber_job!/1 returns the barber_job with given id" do
+      barber_job = barber_job_fixture()
+      assert Barbers.get_barber_job!(barber_job.id) == barber_job
+    end
+
+    test "create_barber_job/1 with valid data creates a barber_job" do
+      valid_attrs = %{description: "some description", name: "some name", price_in_cents: 42}
+
+      assert {:ok, %BarberJob{} = barber_job} = Barbers.create_barber_job(valid_attrs)
+      assert barber_job.description == "some description"
+      assert barber_job.name == "some name"
+      assert barber_job.price_in_cents == 42
+    end
+
+    test "create_barber_job/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Barbers.create_barber_job(@invalid_attrs)
+    end
+
+    test "update_barber_job/2 with valid data updates the barber_job" do
+      barber_job = barber_job_fixture()
+      update_attrs = %{description: "some updated description", name: "some updated name", price_in_cents: 43}
+
+      assert {:ok, %BarberJob{} = barber_job} = Barbers.update_barber_job(barber_job, update_attrs)
+      assert barber_job.description == "some updated description"
+      assert barber_job.name == "some updated name"
+      assert barber_job.price_in_cents == 43
+    end
+
+    test "update_barber_job/2 with invalid data returns error changeset" do
+      barber_job = barber_job_fixture()
+      assert {:error, %Ecto.Changeset{}} = Barbers.update_barber_job(barber_job, @invalid_attrs)
+      assert barber_job == Barbers.get_barber_job!(barber_job.id)
+    end
+
+    test "delete_barber_job/1 deletes the barber_job" do
+      barber_job = barber_job_fixture()
+      assert {:ok, %BarberJob{}} = Barbers.delete_barber_job(barber_job)
+      assert_raise Ecto.NoResultsError, fn -> Barbers.get_barber_job!(barber_job.id) end
+    end
+
+    test "change_barber_job/1 returns a barber_job changeset" do
+      barber_job = barber_job_fixture()
+      assert %Ecto.Changeset{} = Barbers.change_barber_job(barber_job)
+    end
+  end
 end

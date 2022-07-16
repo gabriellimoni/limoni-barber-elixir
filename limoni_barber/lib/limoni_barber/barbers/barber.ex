@@ -9,6 +9,7 @@ defmodule LimoniBarber.Barbers.Barber do
     field :phone, :string
 
     belongs_to :barber_shop, LimoniBarber.BarberShops.BarberShop
+    has_many :barber_jobs, LimoniBarber.Barbers.BarberJob
 
     timestamps()
   end

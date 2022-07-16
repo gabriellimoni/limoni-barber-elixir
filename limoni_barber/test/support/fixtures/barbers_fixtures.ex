@@ -20,4 +20,20 @@ defmodule LimoniBarber.BarbersFixtures do
 
     barber
   end
+
+  @doc """
+  Generate a barber_job.
+  """
+  def barber_job_fixture(attrs \\ %{}) do
+    {:ok, barber_job} =
+      attrs
+      |> Enum.into(%{
+        description: "some description",
+        name: "some name",
+        price_in_cents: 42
+      })
+      |> LimoniBarber.Barbers.create_barber_job()
+
+    barber_job
+  end
 end
