@@ -14,15 +14,13 @@
       <section class="container">
         <nav>
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
+            <li><%= live_redirect "Groups", to: "/barber_shop_groups" %></li>
+            <li><%= live_redirect "Shops", to: "/barber_shops" %></li>
           </ul>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src={Routes.static_path(@conn, "/images/phoenix.png")} alt="Phoenix Framework Logo"/>
-        </a>
+        <%= live_redirect to: "/barber_shop_groups" do %>
+          <img src={Routes.static_path(@conn, "/images/logo.png")} alt="Barber Shop Logo" width="200" height="100"/>
+        <% end %>
       </section>
     </header>
     <%= @inner_content %>
