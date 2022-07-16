@@ -35,7 +35,7 @@ defmodule LimoniBarber.BarberShops do
       ** (Ecto.NoResultsError)
 
   """
-  def get_barber_shop_group!(id), do: Repo.get!(BarberShopGroup, id)
+  def get_barber_shop_group!(id), do: Repo.get!(BarberShopGroup, id) |> Repo.preload(:barber_shops)
 
   @doc """
   Creates a barber_shop_group.

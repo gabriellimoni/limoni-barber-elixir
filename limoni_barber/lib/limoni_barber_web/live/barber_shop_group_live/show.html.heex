@@ -20,6 +20,16 @@
     <%= @barber_shop_group.name %>
   </li>
 
+  <li><strong>Shops</strong></li>
+
+  <ul>
+    <%= for barber_shop <- @barber_shop_group.barber_shops do %>
+      <li>
+        <%= barber_shop.name %>
+      </li>
+    <% end %>
+  </ul>
+
 </ul>
 
 <span><%= live_patch "Edit", to: Routes.barber_shop_group_show_path(@socket, :edit, @barber_shop_group), class: "button" %></span> |
