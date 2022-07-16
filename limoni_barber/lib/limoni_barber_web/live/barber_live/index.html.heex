@@ -17,8 +17,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Email</th>
-      <th>Description</th>
+      <th>Shop</th>
       <th>Phone</th>
 
       <th></th>
@@ -28,8 +27,7 @@
     <%= for barber <- @barbers do %>
       <tr id={"barber-#{barber.id}"}>
         <td><%= barber.name %></td>
-        <td><%= barber.email %></td>
-        <td><%= barber.description %></td>
+        <td><%= barber.barber_shop && barber.barber_shop.name %></td>
         <td><%= barber.phone %></td>
 
         <td>

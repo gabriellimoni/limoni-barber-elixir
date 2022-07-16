@@ -18,7 +18,7 @@ defmodule LimoniBarber.Barbers do
 
   """
   def list_barbers do
-    Repo.all(Barber)
+    Repo.all(Barber) |> Repo.preload(:barber_shop)
   end
 
   @doc """
@@ -35,7 +35,7 @@ defmodule LimoniBarber.Barbers do
       ** (Ecto.NoResultsError)
 
   """
-  def get_barber!(id), do: Repo.get!(Barber, id)
+  def get_barber!(id), do: Repo.get!(Barber, id) |> Repo.preload(:barber_shop)
 
   @doc """
   Creates a barber.
