@@ -18,6 +18,20 @@ defmodule LimoniBarberWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    live "/barber_shop_groups", BarberShopGroupLive.Index, :index
+    live "/barber_shop_groups/new", BarberShopGroupLive.Index, :new
+    live "/barber_shop_groups/:id/edit", BarberShopGroupLive.Index, :edit
+
+    live "/barber_shop_groups/:id", BarberShopGroupLive.Show, :show
+    live "/barber_shop_groups/:id/show/edit", BarberShopGroupLive.Show, :edit
+
+    live "/barber_shops", BarberShopLive.Index, :index
+    live "/barber_shops/new", BarberShopLive.Index, :new
+    live "/barber_shops/:id/edit", BarberShopLive.Index, :edit
+
+    live "/barber_shops/:id", BarberShopLive.Show, :show
+    live "/barber_shops/:id/show/edit", BarberShopLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,39 @@
+<h1>Listing Barber shop groups</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.barber_shop_group_index_path(@socket, :index)}>
+    <.live_component
+      module={LimoniBarberWeb.BarberShopGroupLive.FormComponent}
+      id={@barber_shop_group.id || :new}
+      title={@page_title}
+      action={@live_action}
+      barber_shop_group={@barber_shop_group}
+      return_to={Routes.barber_shop_group_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="barber_shop_groups">
+    <%= for barber_shop_group <- @barber_shop_groups do %>
+      <tr id={"barber_shop_group-#{barber_shop_group.id}"}>
+        <td><%= barber_shop_group.name %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.barber_shop_group_show_path(@socket, :show, barber_shop_group) %></span>
+          <span><%= live_patch "Edit", to: Routes.barber_shop_group_index_path(@socket, :edit, barber_shop_group) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: barber_shop_group.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Barber shop group", to: Routes.barber_shop_group_index_path(@socket, :new) %></span>

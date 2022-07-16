@@ -1,0 +1,67 @@
+<h1>Show Barber shop</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.barber_shop_show_path(@socket, :show, @barber_shop)}>
+    <.live_component
+      module={LimoniBarberWeb.BarberShopLive.FormComponent}
+      id={@barber_shop.id}
+      title={@page_title}
+      action={@live_action}
+      barber_shop={@barber_shop}
+      return_to={Routes.barber_shop_show_path(@socket, :show, @barber_shop)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Group:</strong>
+    <%= @barber_shop.barber_shop_group.name %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @barber_shop.name %>
+  </li>
+
+  <li>
+    <strong>Address</strong>
+  </li>
+
+  <ul>
+    <li>
+      <strong>Country:</strong>
+      <%= @barber_shop.country %>
+    </li>
+
+    <li>
+      <strong>City:</strong>
+      <%= @barber_shop.city %>
+    </li>
+
+    <li>
+      <strong>State:</strong>
+      <%= @barber_shop.state %>
+    </li>
+
+    <li>
+      <strong>Street:</strong>
+      <%= @barber_shop.street %>
+    </li>
+
+    <li>
+      <strong>Number:</strong>
+      <%= @barber_shop.number %>
+    </li>
+
+    <li>
+      <strong>Compĺement:</strong>
+      <%= @barber_shop.compĺement %>
+    </li>
+  </ul>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.barber_shop_show_path(@socket, :edit, @barber_shop), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.barber_shop_index_path(@socket, :index) %></span>
