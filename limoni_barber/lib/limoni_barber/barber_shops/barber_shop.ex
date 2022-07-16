@@ -12,6 +12,7 @@ defmodule LimoniBarber.BarberShops.BarberShop do
     field :street, :string
 
     belongs_to :barber_shop_group, LimoniBarber.BarberShops.BarberShopGroup
+    has_many :barbers, LimoniBarber.Barbers.Barber
 
     timestamps()
   end
