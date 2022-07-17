@@ -21,6 +21,7 @@
             <li><%= live_redirect "Patients", to: "/patients" %></li>
             <li><%= live_redirect "Attendances", to: "/attendances" %></li>
           </ul>
+          <%= render "_user_menu.html", assigns %>
         </nav>
         <%= live_redirect to: "/barber_shop_groups" do %>
           <img src={Routes.static_path(@conn, "/images/logo.png")} alt="Barber Shop Logo" width="200" height="100"/>
