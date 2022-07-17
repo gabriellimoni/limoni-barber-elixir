@@ -53,6 +53,13 @@ defmodule LimoniBarberWeb.Router do
     live "/patients/:id/edit", PatientLive.Index, :edit
     live "/patients/:id", PatientLive.Show, :show
     live "/patients/:id/show/edit", PatientLive.Show, :edit
+
+    # Attendances
+    live "/attendances", AttendanceLive.Index, :index
+    live "/attendances/new", AttendanceLive.Index, :new
+    live "/attendances/:id/edit", AttendanceLive.Index, :edit
+    live "/attendances/:id", AttendanceLive.Show, :show
+    live "/attendances/:id/show/edit", AttendanceLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

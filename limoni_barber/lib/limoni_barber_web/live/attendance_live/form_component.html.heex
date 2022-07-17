@@ -1,0 +1,46 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="attendance-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :status %>
+    <%= select f, :status, Ecto.Enum.values(LimoniBarber.Attendances.Attendance, :status), prompt: "Choose a value" %>
+    <%= error_tag f, :status %>
+
+    <%= label f, :patient_id %>
+    <%= select f, :patient_id, @patient_options, prompt: "Choose a value" %>
+    <%= error_tag f, :patient_id %>
+
+    <%= label f, :barber_shop_id %>
+    <%= select f, :barber_shop_id, @barber_shop_options, prompt: "Choose a value", phx_change: "change_shop" %>
+    <%= error_tag f, :barber_shop_id %>
+
+    <%= if @barber_job_options do %>
+      <%= label f, :barber_job_id %>
+      <%= select f, :barber_job_id, @barber_job_options, prompt: "Choose a value" %>
+      <%= error_tag f, :barber_job_id %>
+    <%= end %>
+  
+    <%= label f, :schedule %>
+    <%= datetime_select f, :schedule %>
+    <%= error_tag f, :schedule %>
+  
+    <%= label f, :finished_at %>
+    <%= datetime_select f, :finished_at %>
+    <%= error_tag f, :finished_at %>
+  
+    <%= label f, :canceled_at %>
+    <%= datetime_select f, :canceled_at %>
+    <%= error_tag f, :canceled_at %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

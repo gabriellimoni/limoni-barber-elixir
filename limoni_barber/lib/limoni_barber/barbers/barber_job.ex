@@ -8,6 +8,7 @@ defmodule LimoniBarber.Barbers.BarberJob do
     field :price_in_cents, :integer
 
     belongs_to :barber, LimoniBarber.Barbers.Barber
+    has_many :attendances, LimoniBarber.Attendances.Attendance
 
     timestamps()
   end

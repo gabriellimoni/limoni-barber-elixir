@@ -8,6 +8,8 @@ defmodule LimoniBarber.Attendances.Patient do
     field :name, :string
     field :phone, :string
 
+    has_many :attendances, LimoniBarber.Attendances.Attendance
+
     timestamps()
   end
 

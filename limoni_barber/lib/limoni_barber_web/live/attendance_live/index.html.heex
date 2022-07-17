@@ -1,0 +1,45 @@
+<h1>Listing Attendances</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.attendance_index_path(@socket, :index)}>
+    <.live_component
+      module={LimoniBarberWeb.AttendanceLive.FormComponent}
+      id={@attendance.id || :new}
+      title={@page_title}
+      action={@live_action}
+      attendance={@attendance}
+      return_to={Routes.attendance_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Schedule</th>
+      <th>Finished at</th>
+      <th>Canceled at</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="attendances">
+    <%= for attendance <- @attendances do %>
+      <tr id={"attendance-#{attendance.id}"}>
+        <td><%= attendance.status %></td>
+        <td><%= attendance.schedule %></td>
+        <td><%= attendance.finished_at %></td>
+        <td><%= attendance.canceled_at %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.attendance_show_path(@socket, :show, attendance) %></span>
+          <span><%= live_patch "Edit", to: Routes.attendance_index_path(@socket, :edit, attendance) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: attendance.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Attendance", to: Routes.attendance_index_path(@socket, :new) %></span>

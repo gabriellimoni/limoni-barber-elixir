@@ -133,6 +133,13 @@ defmodule LimoniBarber.Barbers do
   """
   def get_barber_job!(id), do: Repo.get!(BarberJob, id) |> Repo.preload(:barber)
 
+  def get_barber_jobs_by_shop!(id) do
+    query = from bj in BarberJob,
+      join: b in Barber, on: bj.barber_id == b.id,
+      where: b.barber_shop_id == ^id
+    Repo.all(query) |> Repo.preload(:barber)
+  end
+
   @doc """
   Creates a barber_job.
 

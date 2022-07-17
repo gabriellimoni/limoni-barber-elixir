@@ -1,0 +1,41 @@
+<h1>Show Attendance</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.attendance_show_path(@socket, :show, @attendance)}>
+    <.live_component
+      module={LimoniBarberWeb.AttendanceLive.FormComponent}
+      id={@attendance.id}
+      title={@page_title}
+      action={@live_action}
+      attendance={@attendance}
+      return_to={Routes.attendance_show_path(@socket, :show, @attendance)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @attendance.status %>
+  </li>
+
+  <li>
+    <strong>Schedule:</strong>
+    <%= @attendance.schedule %>
+  </li>
+
+  <li>
+    <strong>Finished at:</strong>
+    <%= @attendance.finished_at %>
+  </li>
+
+  <li>
+    <strong>Canceled at:</strong>
+    <%= @attendance.canceled_at %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.attendance_show_path(@socket, :edit, @attendance), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.attendance_index_path(@socket, :index) %></span>

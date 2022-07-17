@@ -13,6 +13,7 @@ defmodule LimoniBarber.BarberShops.BarberShop do
 
     belongs_to :barber_shop_group, LimoniBarber.BarberShops.BarberShopGroup
     has_many :barbers, LimoniBarber.Barbers.Barber
+    has_many :attendances, LimoniBarber.Attendances.Attendance
 
     timestamps()
   end

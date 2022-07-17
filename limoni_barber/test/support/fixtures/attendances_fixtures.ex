@@ -20,4 +20,21 @@ defmodule LimoniBarber.AttendancesFixtures do
 
     patient
   end
+
+  @doc """
+  Generate a attendance.
+  """
+  def attendance_fixture(attrs \\ %{}) do
+    {:ok, attendance} =
+      attrs
+      |> Enum.into(%{
+        canceled_at: ~U[2022-07-15 22:28:00Z],
+        finished_at: ~U[2022-07-15 22:28:00Z],
+        schedule: ~U[2022-07-15 22:28:00Z],
+        status: :scheduled
+      })
+      |> LimoniBarber.Attendances.create_attendance()
+
+    attendance
+  end
 end
