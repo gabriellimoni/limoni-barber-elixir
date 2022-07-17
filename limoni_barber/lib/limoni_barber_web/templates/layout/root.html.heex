@@ -14,12 +14,7 @@
       <section class="container">
         <nav>
           <ul>
-            <li><%= live_redirect "Groups", to: "/barber_shop_groups" %></li>
-            <li><%= live_redirect "Shops", to: "/barber_shops" %></li>
-            <li><%= live_redirect "Barbers", to: "/barbers" %></li>
-            <li><%= live_redirect "Barber Jobs", to: "/barber_jobs" %></li>
-            <li><%= live_redirect "Patients", to: "/patients" %></li>
-            <li><%= live_redirect "Attendances", to: "/attendances" %></li>
+            <%= render "_pages_navigation.html", assigns %>
           </ul>
           <%= render "_user_menu.html", assigns %>
         </nav>
